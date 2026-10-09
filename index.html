@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* bramka egz8: bez roli i e-maila pokazujemy formularz (e8.js) */try{if(!localStorage.getItem('e8-email')||!localStorage.getItem('e8-rola'))document.documentElement.classList.add('gated');}catch(e){document.documentElement.classList.add('gated');}</script>
 <title>Egzamin ósmoklasisty z polskiego – Polski na klik</title>
 <meta name="description" content="Egzamin ósmoklasisty z języka polskiego: interaktywne arkusze CKE i szybka powtórka lektur obowiązkowych.">
 <link rel="canonical" href="https://egz8.polskinaklik.pl/">
@@ -114,6 +115,39 @@
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
   footer a { color: var(--biel); }
 
+  /* bramka */
+  #bramka { display: none; }
+  html.gated { overflow: hidden; }
+  html.gated #bramka {
+    display: flex; position: fixed; inset: 0; z-index: 50;
+    align-items: center; justify-content: center; padding: 16px;
+    background: rgba(15,27,61,.94); overflow-y: auto;
+  }
+  .bramka-karta {
+    background: var(--biel); border-top: 4px solid var(--koral); border-radius: 8px;
+    width: 100%; max-width: 460px; padding: 28px 26px 24px; margin: auto;
+  }
+  .bramka-karta h2 { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 28px; line-height: 1.1; margin: 0 0 8px; }
+  .bramka-karta > p { color: var(--szary); margin: 0 0 18px; font-size: 16px; }
+  .bramka-karta fieldset { border: 0; padding: 0; margin: 0 0 16px; }
+  .bramka-karta legend { font-weight: 700; margin-bottom: 8px; }
+  .role { display: flex; flex-wrap: wrap; gap: 8px; }
+  .role label { position: relative; }
+  .role input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .role span { display: inline-block; padding: 8px 16px; border: 2px solid var(--granat); border-radius: 999px; font-weight: 600; font-size: 16px; }
+  .role input:checked + span { background: var(--slonce); }
+  .role input:focus-visible + span { outline: 3px solid var(--morze); outline-offset: 2px; }
+  .pole-mail { display: block; font-weight: 700; margin-bottom: 14px; }
+  .pole-mail input { display: block; width: 100%; margin-top: 6px; font: inherit; font-weight: 400; padding: 10px 12px; border: 2px solid var(--linia); border-radius: 6px; }
+  .pole-mail input:focus { outline: none; border-color: var(--granat); }
+  .zgoda { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--szary); margin-bottom: 8px; }
+  .zgoda input { margin-top: 3px; width: 18px; height: 18px; flex: none; }
+  .zgoda a { color: var(--granat); font-weight: 600; }
+  .blad { color: #B3261E; font-size: 14px; font-weight: 600; min-height: 1.4em; margin: 0 0 10px; }
+  .bramka-karta .przycisk { width: 100%; border: 0; cursor: pointer; font-family: inherit; }
+  .bramka-karta .przycisk:disabled { opacity: .7; cursor: default; }
+  #wyloguj { background: none; border: 0; color: var(--biel); text-decoration: underline; font: inherit; cursor: pointer; padding: 0; }
+
   @media (max-width: 720px) {
     .hero { padding: 40px 0 28px; }
     .ebook { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
@@ -124,6 +158,26 @@
 </style>
 </head>
 <body>
+
+<div id="bramka" role="dialog" aria-modal="true" aria-labelledby="bramkaTytul">
+  <form id="bramkaForm" class="bramka-karta" novalidate>
+    <p class="etykieta">egzamin ósmoklasisty z polskiego</p>
+    <h2 id="bramkaTytul">Zanim zaczniesz</h2>
+    <p>Powiedz, kim jesteś, i podaj e-mail. Pod tym adresem zapiszemy wyniki rozwiązanych arkuszy.</p>
+    <fieldset>
+      <legend>Jestem:</legend>
+      <div class="role">
+        <label><input type="radio" name="rola" value="uczen"><span>uczniem</span></label>
+        <label><input type="radio" name="rola" value="rodzic"><span>rodzicem</span></label>
+        <label><input type="radio" name="rola" value="nauczyciel"><span>nauczycielem</span></label>
+      </div>
+    </fieldset>
+    <label class="pole-mail" for="bEmail">E-mail<input type="email" id="bEmail" autocomplete="email" inputmode="email" required></label>
+    <label class="zgoda"><input type="checkbox" id="bZgoda"><span id="bZgodaTekst">Akceptuję <a href="https://buszujacy.pl/polityka-prywatnosci.html" target="_blank" rel="noopener">politykę prywatności Buszującego</a>. Mój e-mail, rola i wyniki arkuszy zostaną zapisane.</span></label>
+    <p id="bramkaErr" class="blad" aria-live="polite"></p>
+    <button type="submit" class="przycisk">Wejdź</button>
+  </form>
+</div>
 
 <header class="pasek">
   <div class="wrap">
@@ -200,9 +254,10 @@
 <footer>
   <div class="wrap">
     <span>Polski na klik, egzamin ósmoklasisty</span>
-    <span><a href="https://polskinaklik.pl/">polskinaklik.pl</a> &nbsp; <a href="https://polskinaklik.pl/polityka-prywatnosci.html">Polityka prywatności</a></span>
+    <span><a href="https://polskinaklik.pl/">polskinaklik.pl</a> &nbsp; <a href="https://buszujacy.pl/polityka-prywatnosci.html" target="_blank" rel="noopener">Polityka prywatności</a> &nbsp; <button type="button" id="wyloguj" hidden>Wyloguj</button></span>
   </div>
 </footer>
 
+<script src="e8.js"></script>
 </body>
 </html>
