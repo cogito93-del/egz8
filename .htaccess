@@ -1,0 +1,10 @@
+# Folder subdomeny leży w public_html polskinaklik.pl (adres polskinaklik.pl/egz8/).
+# Wejścia przez główną domenę przekierowujemy na subdomenę, żeby nie było duplikatów.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?polskinaklik\.pl$ [NC]
+RewriteRule ^(.*)$ https://egz8.polskinaklik.pl/$1 [R=301,L]
+
+# Repozytorium git nie jest dostępne z sieci.
+RedirectMatch 404 /\.git
+
+DirectoryIndex index.html

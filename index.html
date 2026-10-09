@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Egzamin ósmoklasisty z polskiego – Polski na klik</title>
+<meta name="description" content="Egzamin ósmoklasisty z języka polskiego: interaktywne arkusze CKE i szybka powtórka lektur obowiązkowych.">
+<link rel="canonical" href="https://egz8.polskinaklik.pl/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --granat: #0F1B3D;
+    --koral: #FF5A3C;
+    --slonce: #FFC83D;
+    --morze: #0E7C7B;
+    --lod: #EAF0F8;
+    --biel: #FFFFFF;
+    --szary: #4A5675;
+    --linia: #CFD9E8;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--lod);
+    color: var(--granat);
+    font: 17px/1.6 "Figtree", system-ui, sans-serif;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* pasek górny */
+  .pasek { background: var(--granat); color: var(--biel); }
+  .pasek .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+  .marka { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 20px; text-decoration: none; }
+  .marka span { color: var(--slonce); }
+  .pasek nav a { font-size: 15px; font-weight: 500; text-decoration: none; opacity: .85; }
+  .pasek nav a:hover { opacity: 1; text-decoration: underline; }
+
+  /* nagłówek */
+  .hero { padding: 64px 0 40px; }
+  .etykieta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px; letter-spacing: .08em;
+    color: var(--morze); margin: 0 0 14px;
+  }
+  .hero h1 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 800;
+    font-size: clamp(38px, 6.5vw, 68px); line-height: 1.02;
+    letter-spacing: -.01em; margin: 0 0 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--koral); }
+  .hero p.lead { max-width: 620px; font-size: 19px; color: var(--szary); margin: 0; }
+
+  /* sekcje */
+  section.blok { padding: 32px 0 48px; border-top: 1px solid var(--linia); }
+  .blok h2 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 700;
+    font-size: 26px; margin: 0 0 6px;
+  }
+  .blok .opis { color: var(--szary); margin: 0 0 24px; max-width: 640px; }
+
+  /* kafelki */
+  .siatka { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .kafel {
+    background: var(--biel);
+    border-top: 4px solid var(--morze);
+    border-radius: 6px;
+    padding: 24px 24px 22px;
+    display: flex; flex-direction: column;
+    box-shadow: 0 1px 2px rgba(15,27,61,.06);
+  }
+  .kafel .etykieta { font-size: 12px; margin-bottom: 10px; }
+  .kafel h3 { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 22px; line-height: 1.2; margin: 0 0 10px; }
+  .kafel p { margin: 0 0 16px; color: var(--szary); }
+  .kafel .meta { font-size: 14px; color: var(--szary); margin-top: auto; padding-top: 8px; }
+  .kafel .meta span + span::before { content: ""; display: inline-block; width: 14px; }
+  .kafel a.dalej { font-weight: 700; color: var(--morze); text-decoration: none; margin-top: 12px; }
+  .kafel a.dalej:hover { text-decoration: underline; }
+  .kafel.wkrotce { background: transparent; border: 2px dashed var(--linia); border-top: 4px solid var(--linia); box-shadow: none; }
+  .kafel.wkrotce h3 { color: var(--szary); }
+
+  /* kafel e-booka */
+  .ebook {
+    display: grid; grid-template-columns: 260px 1fr; gap: 36px; align-items: center;
+    background: var(--biel); border-top: 4px solid var(--koral); border-radius: 6px;
+    padding: 32px; box-shadow: 0 1px 2px rgba(15,27,61,.06);
+  }
+  .ebook img { width: 100%; height: auto; display: block; border-radius: 3px; box-shadow: 0 10px 28px rgba(15,27,61,.22); }
+  .ebook h3 { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: clamp(28px, 4vw, 40px); line-height: 1.08; margin: 0 0 6px; }
+  .ebook .podtytul { font-size: 19px; font-weight: 600; margin: 0 0 16px; }
+  .ebook p { color: var(--szary); margin: 0 0 18px; }
+  .lektury { list-style: none; padding: 0; margin: 0 0 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .lektury li { background: var(--lod); border-radius: 999px; padding: 4px 12px; font-size: 14px; font-weight: 500; }
+  .zakup { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .cena {
+    background: var(--slonce); color: var(--granat);
+    font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 26px;
+    padding: 6px 16px; border-radius: 6px; line-height: 1.2;
+  }
+  .przycisk {
+    display: inline-block; background: var(--koral); color: var(--granat);
+    font-weight: 700; font-size: 17px; text-decoration: none;
+    padding: 13px 26px; border-radius: 6px;
+  }
+  .przycisk:hover { background: #ff7458; }
+  .przycisk:focus-visible, a:focus-visible { outline: 3px solid var(--granat); outline-offset: 3px; }
+  .drobne { font-size: 14px; color: var(--szary); margin: 14px 0 0; }
+
+  /* stopka */
+  footer { background: var(--granat); color: #C9D3E6; font-size: 15px; padding: 32px 0; margin-top: 24px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
+  footer a { color: var(--biel); }
+
+  @media (max-width: 720px) {
+    .hero { padding: 40px 0 28px; }
+    .ebook { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
+    .ebook img { max-width: 220px; margin: 0 auto; }
+    .siatka { grid-template-columns: 1fr; }
+    .wrap { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="pasek">
+  <div class="wrap">
+    <a class="marka" href="/">Polski na klik <span>E8</span></a>
+    <nav><a href="https://polskinaklik.pl/">Matura</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="etykieta">egzamin ósmoklasisty z polskiego</p>
+    <h1>Ósma klasa.<br><em>Rozumieć, nie wkuwać.</em></h1>
+    <p class="lead">Arkusze CKE do rozwiązania w przeglądarce i szybka powtórka lektur obowiązkowych. Wszystko w jednym miejscu.</p>
+  </div>
+
+  <section class="blok" id="ebook">
+    <div class="wrap">
+      <h2>E-book</h2>
+      <p class="opis">Sześć lektur obowiązkowych w jednej książce. Na kilka tygodni przed egzaminem.</p>
+
+      <article class="ebook">
+        <img src="img/ebook-lektury-obowiazkowe.jpg" width="640" height="906" alt="Okładka e-booka „Lektury obowiązkowe. Szybka powtórka przed egzaminem ósmoklasisty”">
+        <div>
+          <p class="etykieta">e-book PDF, wydanie 2026</p>
+          <h3>Lektury obowiązkowe</h3>
+          <p class="podtytul">Szybka powtórka przed egzaminem ósmoklasisty</p>
+          <p>Streszczenia, bohaterowie, konteksty i to, co trzeba zapamiętać przed egzaminem. Do tego wzór rozprawki i praca twórcza.</p>
+          <ul class="lektury">
+            <li>Opowieść wigilijna</li>
+            <li>Zemsta</li>
+            <li>Kamienie na szaniec</li>
+            <li>Dziady cz. II</li>
+            <li>Balladyna</li>
+            <li>Mały Książę</li>
+          </ul>
+          <div class="zakup">
+            <span class="cena">39 zł</span>
+            <a class="przycisk" href="https://buszujacy.pl/sklep.html?produkt=p3">Kup e-book</a>
+          </div>
+          <p class="drobne">Zakup w sklepie Buszującego na buszujacy.pl.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="blok" id="arkusze">
+    <div class="wrap">
+      <h2>Arkusze egzaminacyjne</h2>
+      <p class="opis">Prawdziwe arkusze CKE do rozwiązania na ekranie. Z zegarem i kluczem odpowiedzi.</p>
+
+      <div class="siatka">
+        <!-- Wzór kafelka arkusza (kopiuj i uzupełnij, najnowsze na początku):
+        <article class="kafel">
+          <p class="etykieta">CKE, maj 2025</p>
+          <h3>Egzamin ósmoklasisty 2025</h3>
+          <p>Krótki opis: teksty w arkuszu, temat wypracowania.</p>
+          <div class="meta"><span>20 zadań</span><span>45 pkt</span></div>
+          <a class="dalej" href="arkusz-2025-maj.html">Rozwiąż arkusz</a>
+        </article>
+        -->
+        <article class="kafel wkrotce">
+          <p class="etykieta">wkrótce</p>
+          <h3>Pierwsze arkusze w drodze</h3>
+          <p>Arkusze CKE z ostatnich lat pojawią się tutaj jako pierwsze.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Polski na klik, egzamin ósmoklasisty</span>
+    <span><a href="https://polskinaklik.pl/">polskinaklik.pl</a> &nbsp; <a href="https://polskinaklik.pl/polityka-prywatnosci.html">Polityka prywatności</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
