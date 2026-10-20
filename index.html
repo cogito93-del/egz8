@@ -7,6 +7,9 @@
 <title>Egzamin ósmoklasisty z polskiego – Polski na klik</title>
 <meta name="description" content="Egzamin ósmoklasisty z języka polskiego: interaktywne arkusze CKE i szybka powtórka lektur obowiązkowych.">
 <link rel="canonical" href="https://egz8.polskinaklik.pl/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -35,8 +38,10 @@
   /* pasek górny */
   .pasek { background: var(--granat); color: var(--biel); }
   .pasek .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
-  .marka { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 20px; text-decoration: none; }
-  .marka span { color: var(--slonce); }
+  .marka { display: inline-flex; align-items: center; gap: 8px; font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 21px; text-decoration: none; white-space: nowrap; }
+  .marka img { display: block; width: 34px; height: 34px; }
+  .marka em { color: var(--koral); font-style: italic; }
+  .marka span { color: var(--slonce); margin-left: 2px; }
   .pasek nav a { font-size: 15px; font-weight: 500; text-decoration: none; opacity: .85; }
   .pasek nav a:hover { opacity: 1; text-decoration: underline; }
 
@@ -181,7 +186,7 @@
 
 <header class="pasek">
   <div class="wrap">
-    <a class="marka" href="/">Polski na klik <span>E8</span></a>
+    <a class="marka" href="/"><img src="img/pnk-znak.svg" alt="" width="34" height="34">Polski <em>na klik</em> <span>E8</span></a>
     <nav><a href="https://polskinaklik.pl/">Matura</a></nav>
   </div>
 </header>

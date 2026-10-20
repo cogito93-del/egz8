@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Polski na Klik">
+  <title>Polski na Klik</title>
+  <g transform="translate(18 7) scale(.95) translate(-14 -5)">
+    <path d="M14 5 L14 50 L25 40.5 L32.6 58.5 L40.6 54.9 L33 37.2 L48 37.2 Z" fill="#EAF0F8" stroke="#EAF0F8" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M14 5 L14 31 Q23 21.5 37.9 27.5 Z" fill="#FF5A3C" stroke="#FF5A3C" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M14 31 Q23 21.5 37.9 27.5" fill="none" stroke="#FFC83D" stroke-width="3.2"/>
+    <path d="M14 5 L20.2 17.6" stroke="#0F1B3D" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="21.4" cy="20.4" r="2.6" fill="#0F1B3D"/>
+  </g>
+</svg>
