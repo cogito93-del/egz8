@@ -160,6 +160,28 @@
     .siatka { grid-template-columns: 1fr; }
     .wrap { padding: 0 16px; }
   }
+  /* współpracujemy z: karuzela */
+  .wsp-glowa { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .wsp-strzalki { display: flex; gap: 8px; flex: none; margin-bottom: 24px; }
+  .wsp-btn { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--linia); background: var(--biel); color: var(--granat); font-size: 26px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px; }
+  .wsp-btn:hover { background: var(--granat); border-color: var(--granat); color: var(--biel); }
+  .wsp-tor { list-style: none; margin: 0 -4px; padding: 4px 4px 10px; display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .wsp-tor::-webkit-scrollbar { display: none; }
+  .wsp-tor:focus-visible { outline: 3px solid var(--granat); outline-offset: 3px; }
+  .wsp-karta { flex: 0 0 calc((100% - 60px) / 4); scroll-snap-align: start; background: var(--biel); border-top: 4px solid var(--c); border-radius: 6px; padding: 20px 22px 22px; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(15,27,61,.06); }
+  .wsp-karta p { margin: 0; }
+  .wsp-ini { width: 46px; height: 46px; border-radius: 50%; background: var(--c); color: var(--biel); display: grid; place-items: center; font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 18px; margin-bottom: 16px; }
+  .wsp-karta[style*="slonce"] .wsp-ini { color: var(--granat); }
+  .wsp-logo { height: 46px; align-self: flex-start; background: var(--granat); border-radius: 999px; padding: 8px 16px; margin-bottom: 16px; display: flex; align-items: center; }
+  .wsp-logo img { height: 30px; width: auto; display: block; }
+  .wsp-miasto { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--szary); margin-bottom: 4px !important; }
+  .wsp-osoba { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 21px; line-height: 1.15; margin-bottom: 8px !important; }
+  .wsp-szkola { font-size: 14px; line-height: 1.4; color: var(--szary); }
+  .wsp-karta-szkola .wsp-osoba { font-size: 18px; }
+  .wsp-karta-szkola .wsp-szkola { font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+  @media (max-width: 1000px) { .wsp-karta { flex-basis: calc((100% - 40px) / 3); } }
+  @media (max-width: 760px) { .wsp-karta { flex-basis: calc((100% - 20px) / 2); } }
+  @media (max-width: 560px) { .wsp-karta { flex-basis: 84%; } .wsp-strzalki { display: none; } }
 </style>
 </head>
 <body>
@@ -285,6 +307,88 @@
       </article>
     </div>
   </section>
+  <section class="blok" id="wspolpraca">
+    <div class="wrap">
+      <div class="wsp-glowa">
+        <div>
+          <h2>Współpracujemy z</h2>
+          <p class="opis">Polonistki, które pracują z Polskim na klik na lekcjach, ich szkoły i fundacja.</p>
+        </div>
+        <div class="wsp-strzalki">
+          <button type="button" class="wsp-btn" data-kier="-1" aria-label="Poprzednie">‹</button>
+          <button type="button" class="wsp-btn" data-kier="1" aria-label="Następne">›</button>
+        </div>
+      </div>
+      <ul class="wsp-tor" tabindex="0" aria-label="Nauczycielki, szkoły i fundacja, z którymi współpracujemy">
+        <li class="wsp-karta" style="--c:var(--koral)">
+          <span class="wsp-ini" aria-hidden="true">IT</span>
+          <p class="wsp-miasto">Warszawa</p>
+          <p class="wsp-osoba">Iwona Tkacz</p>
+          <p class="wsp-szkola">XCIX Liceum Ogólnokształcące im. Zbigniewa Herberta</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--morze)">
+          <span class="wsp-ini" aria-hidden="true">IJ</span>
+          <p class="wsp-miasto">Jelenia Góra</p>
+          <p class="wsp-osoba">Iwona Janicka</p>
+          <p class="wsp-szkola">Zespół Szkół Technicznych „Mechanik”</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--slonce)">
+          <span class="wsp-ini" aria-hidden="true">KS</span>
+          <p class="wsp-miasto">Dobrocin</p>
+          <p class="wsp-osoba">Katarzyna Steffen</p>
+          <p class="wsp-szkola">Zespół Szkół Rolniczych</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--granat)">
+          <span class="wsp-ini" aria-hidden="true">KK</span>
+          <p class="wsp-miasto">Ząbkowice Śląskie</p>
+          <p class="wsp-osoba">Karolina Karpiak</p>
+          <p class="wsp-szkola">Niepubliczne Liceum Ogólnokształcące</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--koral)">
+          <span class="wsp-ini" aria-hidden="true">DŻ</span>
+          <p class="wsp-miasto">Stargard</p>
+          <p class="wsp-osoba">Dominika Żarska</p>
+          <p class="wsp-szkola">II Liceum Ogólnokształcące im. Cypriana Kamila Norwida</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--morze)">
+          <span class="wsp-ini" aria-hidden="true">MM</span>
+          <p class="wsp-miasto">Knurów</p>
+          <p class="wsp-osoba">Monika Moryn</p>
+          <p class="wsp-szkola">Niepubliczne Liceum Ogólnokształcące Maranatha</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--slonce)">
+          <span class="wsp-ini" aria-hidden="true">AC</span>
+          <p class="wsp-miasto">Zawoja</p>
+          <p class="wsp-osoba">Anna Caputa</p>
+          <p class="wsp-szkola">Liceum Mistrzostwa Sportowego, Beskidzkie Centrum Edukacji i Sportu</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--granat)">
+          <span class="wsp-ini" aria-hidden="true">EK</span>
+          <p class="wsp-miasto">Warszawa</p>
+          <p class="wsp-osoba">Elżbieta Kocerka</p>
+          <p class="wsp-szkola">43 Liceum Ogólnokształcące Niepubliczne im. Lotników Amerykańskich</p>
+        </li>
+        <li class="wsp-karta" style="--c:var(--koral)">
+          <span class="wsp-ini" aria-hidden="true">EP</span>
+          <p class="wsp-miasto">Suwałki</p>
+          <p class="wsp-osoba">Ewa Pawłowska</p>
+          <p class="wsp-szkola">Zespół Szkół Centrum Kształcenia Rolniczego</p>
+        </li>
+        <li class="wsp-karta wsp-karta-szkola" style="--c:var(--morze)">
+          <span class="wsp-ini" aria-hidden="true">LO</span>
+          <p class="wsp-miasto">Węgrów</p>
+          <p class="wsp-osoba">I Liceum Ogólnokształcące im. Adama Mickiewicza</p>
+          <p class="wsp-szkola">szkoła partnerska</p>
+        </li>
+        <li class="wsp-karta wsp-karta-szkola" style="--c:var(--granat)">
+          <span class="wsp-logo"><img src="img/fundacja-pasja-nauki.webp" alt="" width="259" height="60" loading="lazy"></span>
+          <p class="wsp-miasto">fundacja</p>
+          <p class="wsp-osoba">Fundacja Pasja Nauki</p>
+          <p class="wsp-szkola">partner</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -294,6 +398,27 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var tor=document.querySelector('.wsp-tor'); if(!tor) return;
+  function krok(){var k=tor.querySelector('.wsp-karta');return k?k.getBoundingClientRect().width+14:300}
+  function dalej(kier){
+    var koniec=tor.scrollLeft+tor.clientWidth>=tor.scrollWidth-4;
+    if(kier>0&&koniec){tor.scrollTo({left:0,behavior:'smooth'});return}
+    if(kier<0&&tor.scrollLeft<=4){tor.scrollTo({left:tor.scrollWidth,behavior:'smooth'});return}
+    tor.scrollBy({left:kier*krok(),behavior:'smooth'});
+  }
+  document.querySelectorAll('.wsp-btn').forEach(function(b){b.addEventListener('click',function(){stop=true;dalej(+b.dataset.kier)})});
+  tor.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();dalej(1)}if(e.key==='ArrowLeft'){e.preventDefault();dalej(-1)}});
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stop=false,pauza=false,widoczny=false;
+  var sekcja=document.getElementById('wspolpraca');
+  ['mouseenter','focusin','touchstart'].forEach(function(z){sekcja.addEventListener(z,function(){pauza=true},{passive:true})});
+  ['mouseleave','focusout'].forEach(function(z){sekcja.addEventListener(z,function(){pauza=false})});
+  if('IntersectionObserver' in window){new IntersectionObserver(function(w){widoczny=w[0].isIntersecting}).observe(tor)}else{widoczny=true}
+  setInterval(function(){if(!stop&&!pauza&&widoczny&&!document.hidden)dalej(1)},4500);
+})();
+</script>
 <script src="e8.js"></script>
 </body>
 </html>
